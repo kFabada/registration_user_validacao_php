@@ -6,8 +6,6 @@ error_reporting(E_ALL);
 include_once('../class/usuario.class.php');
 include_once('../class/conexao.php');
 
-
-
 try {
 
     // $_POST["id"];
@@ -31,9 +29,10 @@ try {
         $user->setVch_telefone($_POST["telefone"]);
     }
 
+    if(!empty($_POST["id_usuario"])){
     $user->setInt_cadastro_situacao(1);
-    //conserta entrada no cadastra usuario
     $user->cadastraUsuario($pdo);
+    }
     
 }
 catch(Exception $e){

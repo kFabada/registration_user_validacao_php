@@ -1,10 +1,7 @@
 <?php
-include_once('../class/conexao.php');
+require_once('../class/conexao.php');
 
 //class para o cadastro inicial do usuario
-
-
-
 class Usuario{
 
     private $id_usuario;
@@ -71,7 +68,7 @@ class Usuario{
      $this->int_cadastro_situacao = $int_cadastro_situacao;
   }
 
-  public function cadastraUsuario( $conn){
+  public function cadastraUsuario($conn){
       try {
                 $sql = $conn->prepare("INSERT INTO usuario_cadastro(id_usuario, vch_login, vch_senha, vch_email, vch_telefone, int_cadastro_situacao) VALUES (:id_usuario, :vch_login, :vch_senha, :vch_email,:vch_telefone,:int_cadastro_situacao)");
                 $sql->bindValue(':id_usuario', $this->id_usuario);

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt_br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,29 +10,45 @@
 <body>
     <header>
         <div class="header">
-            <a class="logo" href="#">CyberCop</a>
+            <a class="logo" href="./index.php">CyberCoin</a>
             <!-- <h1 class="title">Cadastro</h1> -->
         </div>
     </header>
     <main>
-        <div>
-            <form action="processamento/processamento_cadastro.php" method="post">
-                <div>
-                    <label for="login">Login</label>
-                    <input id="login" name="login" type="text" required>
-                    <label for="senha">Senha</label>
-                    <input id="senha" name="senha" type="password" minlength="8" required>
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" required>
-                    <label for="telefone">Telefone</label>
-                    <input id="telefone" name="telefone" type="tel" required>
+        <section>
+            <div>
+                <form action="processamento/processamento_cadastro.php" method="post">
                     <div>
-                        <button type="submit">Enviar Cadastro</button>
-                        <a href="altear_senha.php">Esqueceu a senha</a>
+                        <div>
+                        <label for="login">Login</label>
+                        </div>
+                        <input class="container-item"  id="login" name="login" type="text" required>
                     </div>
-                </div>
+                    <div>
+                        <div>
+                        <label for="senha">Senha</label>
+                        </div>
+                        <input class="container-item"  id="senha" name="senha" type="password" minlength="8" required>
+                    </div>
+                    <div>
+                        <div>
+                        <label for="email">Email</label>
+                        </div>
+                        <input  class="container-item" id="email" name="email" type="email" required>
+                    </div>
+                    <div>
+                        <div>
+                        <label for="telefone">Telefone</label>
+                        </div>
+                        <input class="container-item" id="telefone" name="telefone" type="tel"  required>
+                    </div>
+                    <div>
+                        <button class="btn" type="submit">Enviar Cadastro</button>
+                    </div>
+            </div>
             </form>
-        </div>
+            </div>
     </main>
+    </section>
 </body>
 </html>
