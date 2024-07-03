@@ -16,24 +16,26 @@ try {
 
     $user = new Usuario();
 
-    if(isset($_POST["login"])){
-        $user->setVch_login($_POST["login"]);
-    }
-    if(isset($_POST["senha"])){
-        $user->setVch_senha($_POST["senha"]);
-    }
-    if(isset($_POST["email"])){
-        $user->setVch_email($_POST["email"]);
-    }
-    if(isset($_POST["telefone"])){
-        $user->setVch_telefone($_POST["telefone"]);
-    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if(!empty($_POST["id_usuario"])){
-    $user->setInt_cadastro_situacao(1);
-    $user->cadastraUsuario($pdo);
-    }
+        if(isset($_POST["login"])){
+            $user->setVch_login($_POST["login"]);
+        }
+        if(isset($_POST["senha"])){
+            $user->setVch_senha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
+        }
+        if(isset($_POST["email"])){
+            $user->setVch_email($_POST["email"]);
+        }
+        if(isset($_POST["telefone"])){
+            $user->setVch_telefone($_POST["telefone"]);
+        }
+        
+
+        $user->setInt_cadastro_situacao(1);
+        $user->inserirUsuario($conn); 
     
+    }
 }
 catch(Exception $e){
 echo "o envio do action para o processar falhou". $e->getMessage();
