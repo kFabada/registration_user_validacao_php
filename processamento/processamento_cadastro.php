@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include_once('../class/usuario.class.php');
-include_once('../class/conexao.php');
+require_once('../class/conexao.class.php');
 
 try {
 
@@ -15,14 +15,15 @@ try {
     // $_POST["telefone"];
 
     $user = new Usuario();
+    $login = new Login();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if(isset($_POST["login"])){
-            $user->setVch_login($_POST["login"]);
+            $login->setVch_login($_POST["login"]);
         }
         if(isset($_POST["senha"])){
-            $user->setVch_senha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
+            $login->setVch_senha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
         }
         if(isset($_POST["email"])){
             $user->setVch_email($_POST["email"]);
@@ -30,15 +31,17 @@ try {
         if(isset($_POST["telefone"])){
             $user->setVch_telefone($_POST["telefone"]);
         }
-        
 
         $user->setInt_cadastro_situacao(1);
-        $user->inserirUsuario($conn); 
-    
+
+    if((isset($_POST["login"])) && (isset($_POST["email"]))){
+        
+        $user->inserirUsuario($login); 
     }
 }
+}
 catch(Exception $e){
-echo "o envio do action para o processar falhou". $e->getMessage();
+echo "processamento falhou". $e->getMessage();
 }
 
 

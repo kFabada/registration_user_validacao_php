@@ -51,8 +51,9 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+ 
  }
 
 section{
@@ -64,17 +65,17 @@ section{
  form{
    width: 100%;
    display: block;
-   padding-top: 7rem;
+   padding-top: 8rem;
  }
 
 
  .container-item{
-    padding: 9px;
+    padding: 7px;
     box-sizing: border-box;
     /* border: 2px solid black;
     box-shadow: 1px 1px rgb(39, 51, 129); */
-    margin: 8px;
-    width: 300px;
+    margin: 6px;
+    width: 250px;
   }
 
   label{
@@ -85,7 +86,7 @@ section{
     cursor: pointer;
   }
  
-  .btn{    
+  .btn-submit{    
      color: aliceblue;
      background-color: rgb(45, 88, 219);
      font-weight: 300;

@@ -13,7 +13,7 @@ error_reporting(E_ALL);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/index_style.css">
+    <link rel="stylesheet" href="style/style-index.css">
     <title>Login</title>
 </head>
 
@@ -21,7 +21,6 @@ error_reporting(E_ALL);
     <header>
         <div class="header">
             <a class="logo" href="#">CyberCoin</a>
-            <!-- <h1 class="title">Cadastro</h1> -->
         </div>
     </header>
     <section>
@@ -40,13 +39,16 @@ error_reporting(E_ALL);
                             <input class="container-item" id="password" name="password" type="password" placeholder="senha" required>
                         </div>
                     </div>
-                        <button class="btn-login" type="submit">Login</button>
-                        <a href="cadastro_inicial.php"><button class="btn-cadastro" id="button" type="button">Cadastro</button></a>
-                        <a class="btn-link" href="altear_senha.php">Esqueceu a senha</a>
+                    <button class="btn-login" type="submit">Login</button>
+                    <a href="cadastro_inicial.php"><button class="btn-cadastro" id="button" type="button">Cadastro</button></a>
+                    <a class="btn-link" href="altear_senha.php">Esqueceu a senha</a>
                 </form>
             </div>
         </main>
     </section>
+    <script>
+
+    </script>
 </body>
 
 </html>
