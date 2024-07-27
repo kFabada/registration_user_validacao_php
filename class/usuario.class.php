@@ -11,9 +11,6 @@ class Usuario{
     private $vch_telefone;
     private $int_cadastro_situacao;
 
-    public function __construct() {
-      $this->login = new Login();
-  }
 
 public function getLogin(){
   return $this->login;
@@ -60,21 +57,45 @@ public function setLogin(Login $login) {
     try{
               $pdo = Database::conexao();
               $pdo->beginTransaction();
-              $stmt = $pdo->prepare("INSERT INTO dados_usuario(vch_email, vch_telefone, int_cadastro_situacao)
-              VALUES(:vch_email, :vch_telefone, :int_cadastro_situacao)");
-              $stmt->bindValue("vch_email", $this->vch_email);
-              $stmt->bindValue("vch_telefone", $this->vch_telefone);
-              $stmt->bindValue("int_cadastro_situacao", $this->int_cadastro_situacao);
-              $stmt->execute();
+
+                      $stmt = $pdo->prepare("INSERT INTO dados_usuario(vch_email, vch_telefone, int_cadastro_situacao)
+                      VALUES(:vch_email, :vch_telefone, :int_cadastro_situacao)");
+                      $stmt->bindValue("vch_email", $this->vch_email);
+                      $stmt->bindValue("vch_telefone", $this->vch_telefone);
+                      $stmt->bindValue("int_cadastro_situacao", $this->int_cadastro_situacao);
+                      $stmt->execute();
 
               $this->id_usuario = $pdo->lastInsertId();
 
               $pdo->commit();
-              $this->login->setVch_login($vch_login);
 
-             
-              $this->login->inserirLogin();
+              $this->setLogin($login);
+              
+              $vch_login = $this->login->getVch_login();
+              $vch_senha = $this->login->getVch_senha();
 
+
+              try{
+                $pdo = DataBase::conexao();
+                $pdo->beginTransaction();
+
+                      $stmt = $pdo->prepare("INSERT INTO usuario(vch_login, vch_senha) 
+                      VALUES(:vch_login, :vch_senha)");
+                      $stmt->bindValue(":vch_login", $vch_login);
+                      $stmt->bindValue(":vch_senha", $vch_senha);
+                      $stmt->execute();
+
+                $id_login = $pdo->lastInsertId();
+
+                $pdo->commit();
+
+                return $id_login;
+      }catch(Exception $e){
+                $pdo->rollBack();
+                echo "falha na insercao de login" . $e->getMessage();
+      }
+
+      
     }catch(PDOException $e){
       $pdo->rollBack();
       echo 'Falha na Inserção de usuario' .  $e->getMessage();

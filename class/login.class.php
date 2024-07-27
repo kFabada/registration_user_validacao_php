@@ -42,8 +42,6 @@ class Login {
                   $pdo->beginTransaction();
                   $stmt = $pdo->prepare("INSERT INTO usuario(vch_login, vch_senha) 
                   VALUES(:vch_login, :vch_senha)");
-
-
                   $stmt->bindValue(":vch_login", $this->vch_login);
                   $stmt->bindValue(":vch_senha", $this->vch_senha);
                   $stmt->execute();
