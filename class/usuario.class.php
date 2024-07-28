@@ -104,17 +104,4 @@ public function setLogin(Login $login) {
       
   }
 
-  public function existeEmail($vch_email){
-
-    $pdo = Database::conexao();
-    $consulta = $pdo("SELECT COUNT(*) FROM dados_usuario WHERE :vch_email = $vch_email");
-    $consulta->execute();
-    return $consulta;
-  }
-
-  public function exibirUsuario(){
-    $pdo = Database::conexao();
-    $consulta = $pdo("SELECT ")
-  }
-
 }

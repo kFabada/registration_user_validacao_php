@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style-cadastro.css">
     <title>Cadastro Inicial</title>
 </head>
-
 <body>
     <header>
         <a class="logo" href="../cadastro_usuario/index.php">CyberCoin</a>
@@ -30,7 +28,7 @@
                                 <div>
                                     <label for="username">Username</label>
                                 </div>
-                                <input type="text" name="username" id="username" placeholder="username">
+                                <input type="text" name="username" id="username" placeholder="username" >
                             </div>
                             <div class="form-item">
                                 <div>
@@ -59,5 +57,4 @@
         </section>
     </main>
 </body>
-
 </html>

@@ -1,22 +1,11 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt_br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style-index.css">
     <title>Login</title>
 </head>
-
 <body>
     <header>
         <div class="header">
@@ -46,9 +35,5 @@ error_reporting(E_ALL);
             </div>
         </main>
     </section>
-    <script>
-
-    </script>
 </body>
-
 </html>
