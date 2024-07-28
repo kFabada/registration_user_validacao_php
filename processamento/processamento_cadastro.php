@@ -20,11 +20,11 @@ try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if(isset($_POST["login"])){
-            $login->setVch_login($_POST["login"]);
+            $login->setVch_login($_POST["username"]);
         }
         
         if(isset($_POST["senha"])){
-            $login->setVch_senha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
+            $login->setVch_senha(password_hash($_POST['password'], PASSWORD_DEFAULT));
         }
 
         if(isset($_POST["email"])){
@@ -41,7 +41,7 @@ try {
 
         $user->setInt_cadastro_situacao(1);
 
-    if((isset($_POST["login"])) && (isset($_POST["email"]))){
+    if((isset($_POST["username"])) && (isset($_POST["email"]))){
         
         $user->inserirUsuario($login); 
     }
