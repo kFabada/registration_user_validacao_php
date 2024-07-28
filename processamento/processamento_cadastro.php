@@ -22,12 +22,19 @@ try {
         if(isset($_POST["login"])){
             $login->setVch_login($_POST["login"]);
         }
+        
         if(isset($_POST["senha"])){
             $login->setVch_senha(password_hash($_POST['senha'], PASSWORD_DEFAULT));
         }
+
         if(isset($_POST["email"])){
+          $email = $user->existeEmail(($_POST["email"]));
+          if($email == true){
+            throw new ErrorException($email);
+          }
             $user->setVch_email($_POST["email"]);
         }
+
         if(isset($_POST["telefone"])){
             $user->setVch_telefone($_POST["telefone"]);
         }

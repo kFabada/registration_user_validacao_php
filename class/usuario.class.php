@@ -54,6 +54,7 @@ public function setLogin(Login $login) {
   }
 
   public function inserirUsuario($login){
+
     try{
               $pdo = Database::conexao();
               $pdo->beginTransaction();
@@ -101,6 +102,19 @@ public function setLogin(Login $login) {
       echo 'Falha na Inserção de usuario' .  $e->getMessage();
     }
       
+  }
+
+  public function existeEmail($vch_email){
+
+    $pdo = Database::conexao();
+    $consulta = $pdo("SELECT COUNT(*) FROM dados_usuario WHERE :vch_email = $vch_email");
+    $consulta->execute();
+    return $consulta;
+  }
+
+  public function exibirUsuario(){
+    $pdo = Database::conexao();
+    $consulta = $pdo("SELECT ")
   }
 
 }
