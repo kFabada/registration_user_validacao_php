@@ -19,36 +19,41 @@ try {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        if(isset($_POST["login"])){
+        if(isset($_POST["username"])){
+            $username = $login->existeUsername($_POST["username"]);
+                 if($username == true){
+                     throw new Exception("username ja existente no banco");
+               }
+         }
             $login->setVch_login($_POST["username"]);
         }
         
-        if(isset($_POST["senha"])){
+        if(isset($_POST["password"])){
             $login->setVch_senha(password_hash($_POST['password'], PASSWORD_DEFAULT));
         }
 
         if(isset($_POST["email"])){
-          $email = $user->existeEmail(($_POST["email"]));
-          if($email == true){
-            throw new ErrorException($email);
-          }
+            $email = $user->existeEmail($_POST["email"]);
+                if($email == true){
+                    throw new Exception("email ja existente no banco");
+            }
             $user->setVch_email($_POST["email"]);
         }
-
+        
         if(isset($_POST["telefone"])){
             $user->setVch_telefone($_POST["telefone"]);
         }
 
         $user->setInt_cadastro_situacao(1);
 
-    if((isset($_POST["username"])) && (isset($_POST["email"]))){
+        if((isset($_POST["username"])) && (isset($_POST["email"]))){
         
         $user->inserirUsuario($login); 
     }
 }
-}
 catch(Exception $e){
-echo "processamento falhou". $e->getMessage();
+    $pdo->rollBack();
+    echo "processamento falhou". "<br>" . $e->getMessage();
 }
 
 

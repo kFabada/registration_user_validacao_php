@@ -21,8 +21,8 @@
     <main>
         <section>
             <div class="container-form">
-            <h1 class="title-form">Cadastro CyberCoin</h1>
-                <form action="processamento_cadastro.php" method="post">
+            <!-- <h1 class="title-form">Cadastro CyberCoin</h1> -->
+                <form action="processamento/processamento_cadastro.php" method="post">
                         <div class="form-group">
                             <div class="form-item">
                                 <div>
@@ -44,9 +44,9 @@
                             </div>
                             <div class="form-item">
                                 <div>
-                                    <label for="tel">Telefone</label>
+                                    <label for="telefone">Telefone</label>
                                 </div>
-                                <input type="text" maxlength="15" name="tel" id="tel" placeholder="telefone">
+                                <input type="text" maxlength="15" name="telefone" id="telefone" placeholder="telefone">
                             </div>
                             <div>
                                 <button id="btn-submit" class="btn-submit" type="submit">Enviar</button>

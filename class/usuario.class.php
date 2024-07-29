@@ -72,29 +72,29 @@ public function setLogin(Login $login) {
 
               $this->setLogin($login);
               
-              $vch_login = $this->login->getVch_login();
-              $vch_senha = $this->login->getVch_senha();
+              $this->login->getVch_login();
+              $this->login->getVch_senha();
+
+              $this->login->inserirLogin();
 
 
-              try{
-                $pdo = DataBase::conexao();
-                $pdo->beginTransaction();
+      //         try{
+      //           $pdo = DataBase::conexao();
+      //           $pdo->beginTransaction();
 
-                      $stmt = $pdo->prepare("INSERT INTO usuario(vch_login, vch_senha) 
-                      VALUES(:vch_login, :vch_senha)");
-                      $stmt->bindValue(":vch_login", $vch_login);
-                      $stmt->bindValue(":vch_senha", $vch_senha);
-                      $stmt->execute();
+      //                 $stmt = $pdo->prepare("INSERT INTO usuario(vch_login, vch_senha) 
+      //                 VALUES(:vch_login, :vch_senha)");
+      //                 $stmt->bindValue(":vch_login", $vch_login);
+      //                 $stmt->bindValue(":vch_senha", $vch_senha);
+      //                 $stmt->execute();
 
-                $id_login = $pdo->lastInsertId();
+      //           $this->$id_login = $pdo->lastInsertId();
 
-                $pdo->commit();
-
-                return $id_login;
-      }catch(Exception $e){
-                $pdo->rollBack();
-                echo "falha na insercao de login" . $e->getMessage();
-      }
+      //           $pdo->commit();
+      // }catch(Exception $e){
+      //           $pdo->rollBack();
+      //           echo "falha na insercao de login" . $e->getMessage();
+      // }
 
       
     }catch(PDOException $e){
@@ -103,5 +103,20 @@ public function setLogin(Login $login) {
     }
       
   }
+
+  public function existeEmail($vch_email){
+    try{
+            $pdo = Database::conexao();
+            $consulta = $pdo->prepare("SELECT COUNT(*) FROM dados_usuario WHERE vch_email = :vch_email");
+            $consulta->bindParam('vch_email', $vch_email);
+            $consulta->execute();
+            $count = $consulta->fetchColumn();
+        return $count > 0;
+    }catch(Exception $e){
+        echo "falha na busca" . $e->getMessage();
+    }
+   
+}
+
 
 }

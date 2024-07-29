@@ -36,25 +36,40 @@ class Login {
         $this->vch_senha = password_hash($vch_senha, PASSWORD_DEFAULT);
       }
     
-      // public function inserirLogin(){
-      //   try{
-      //             $pdo = DataBase::conexao();
-      //             $pdo->beginTransaction();
-      //             $stmt = $pdo->prepare("INSERT INTO usuario(vch_login, vch_senha) 
-      //             VALUES(:vch_login, :vch_senha)");
-      //             $stmt->bindValue(":vch_login", $this->vch_login);
-      //             $stmt->bindValue(":vch_senha", $this->vch_senha);
-      //             $stmt->execute();
+      public function inserirLogin(){
+        try{
+                  $pdo = DataBase::conexao();
+                  $pdo->beginTransaction();
+                  $stmt = $pdo->prepare("INSERT INTO usuario(vch_login, vch_senha) 
+                  VALUES(:vch_login, :vch_senha)");
+                  $stmt->bindValue(":vch_login", $this->vch_login);
+                  $stmt->bindValue(":vch_senha", $this->vch_senha);
+                  $stmt->execute();
 
-      //             $this->id_login = $pdo->lastInsertId();
+                  $this->id_login = $pdo->lastInsertId();
 
-      //             $pdo->commit();
-      //   }catch(Exception $e){
-      //             $pdo->rollBack();
-      //             echo "falha na insercao de login" . $e->getMessage();
-      //   }
+                  $pdo->commit();
+        }catch(Exception $e){
+                  $pdo->rollBack();
+                  echo "falha na insercao de login" . $e->getMessage();
+        }
        
-      // } 
+      } 
+
+      public function existeUsername(){
+        try{
+              $pdo = Database::conexao();
+              $busca = $pdo->prepare("SELECT COUNT(*) FROM usuario WHERE vch_login = :vch_login");
+              $busca->bindParam(':vch_login', $this->vch_login);
+              $busca->execute();
+              $count = $busca->fetchColumn();
+              return $count > 0;
+      
+        }catch(Exception $e){
+          echo "falha no select" . $e->getMessage();
+        }
+      }
+    
 }
 
 
