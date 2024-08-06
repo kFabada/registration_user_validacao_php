@@ -1,9 +1,15 @@
+<?php
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt_br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style-index.css">
+    <link rel="stylesheet" href="css/style-index.css">
     <title>Login</title>
 </head>
 <body>
@@ -15,7 +21,7 @@
     <section>
         <main>
             <div>
-                <form action="validar_login.php" method="post">
+                <form action="processamento/verificar.login.php" method="post">
                     <div>
                         <label for="login">Username</label>
                         <div>

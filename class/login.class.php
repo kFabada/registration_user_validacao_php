@@ -6,7 +6,7 @@ include_once('../class/usuario.class.php');
 
 class Login {
 
-  
+
     private $id_login;
     private $vch_login;
     private $vch_senha;
@@ -67,6 +67,21 @@ class Login {
       
         }catch(Exception $e){
           echo "falha no select" . $e->getMessage();
+        }
+      }
+
+      public function buscaUsuario(){
+        try{
+                $pdo = Database::conexao();
+                $query = $pdo->prepare("SELECT vch_login, vch_senha FROM usuario 
+                WHERE vch_login = :vch_login and vch_senha = :vch_senha");
+                $query->bindParam(':vch_login', $login);
+                $query->bindParam(':vch_senha', $senha);
+                $query->execute();
+                $result = $query->fetchColumn();
+                return $result;
+        }catch(Exception $e){
+          echo "falha na busca" . $e->getMessage();
         }
       }
     
