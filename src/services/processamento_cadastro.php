@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include_once('../class/usuario.class.php');
-require_once('../class/conexao.class.php');
+require_once('../config/database.php');
 
 try {
 
@@ -52,7 +52,6 @@ try {
     }
 }
 catch(Exception $e){
-    $pdo->rollBack();
     echo "processamento falhou". "<br>" . $e->getMessage();
 }
 

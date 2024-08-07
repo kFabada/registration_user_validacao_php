@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style-cadastro.css">
+    <link rel="stylesheet" href="../../public/css/style-cadastro.css">
     <title>Cadastro Inicial</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
         <section>
             <div class="container-form">
             <!-- <h1 class="title-form">Cadastro CyberCoin</h1> -->
-                <form action="processamento/processamento_cadastro.php" method="post">
+                <form action="../services/processamento_cadastro.php" method="post">
                         <div class="form-group">
                             <div class="form-item">
                                 <div>

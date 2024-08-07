@@ -21,7 +21,7 @@
     <section>
         <main>
             <div>
-                <form action="processamento/verificar.login.php" method="post">
+                <form action="../src/services/verificar.login.php" method="post">
                     <div>
                         <label for="login">Username</label>
                         <div>
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <button class="btn-login" type="submit">Login</button>
-                    <a href="cadastro_inicial.php"><button class="btn-cadastro" id="button" type="button">Cadastro</button></a>
+                    <a href="../src/Views/cadastro_inicial.php"><button class="btn-cadastro" id="button" type="button">Cadastro</button></a>
                     <a class="btn-link" href="altear_senha.php">Esqueceu a senha</a>
                 </form>
             </div>

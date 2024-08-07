@@ -1,5 +1,5 @@
 <?php
-include_once("../class/conexao.class.php");
+include_once('../config/database.php');
 include_once('../class/login.class.php');
 
 //class para o cadastro inicial do usuario

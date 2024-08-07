@@ -1,5 +1,5 @@
 <?php
-require_once('../class/conexao.class.php');
+require_once('../config/database.php');
 include_once('../class/usuario.class.php');
 
 
@@ -70,20 +70,20 @@ class Login {
         }
       }
 
-      public function buscaUsuario(){
-        try{
-                $pdo = Database::conexao();
-                $query = $pdo->prepare("SELECT vch_login, vch_senha FROM usuario 
-                WHERE vch_login = :vch_login and vch_senha = :vch_senha");
-                $query->bindParam(':vch_login', $login);
-                $query->bindParam(':vch_senha', $senha);
-                $query->execute();
-                $result = $query->fetchColumn();
-                return $result;
-        }catch(Exception $e){
-          echo "falha na busca" . $e->getMessage();
-        }
-      }
+      // public function buscaUsuario($login, $senha){
+      //   try{
+      //           $pdo = Database::conexao();
+      //           $query = $pdo->prepare("SELECT vch_login, vch_senha FROM usuario 
+      //           WHERE vch_login = :vch_login and vch_senha = :vch_senha");
+      //           $query->bindParam(':vch_login', $login);
+      //           $query->bindParam(':vch_senha', $senha);
+      //           $query->execute();
+      //           $result = $query->fetchColumn();
+      //           return $result;
+      //   }catch(Exception $e){
+      //     echo "falha na busca" . $e->getMessage();
+      //   }
+      // }
     
 }
 
