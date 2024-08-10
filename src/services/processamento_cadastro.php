@@ -22,7 +22,7 @@ try {
         if(isset($_POST["username"])){
             $username = $login->existeUsername($_POST["username"]);
                  if($username == true){
-                     throw new Exception("username ja existente no banco");
+                     throw new Exception("Username ja existe tente outro ou recupere a senha" ."<br>");
                }
          }
             $login->setVch_login($_POST["username"]);
@@ -35,7 +35,7 @@ try {
         if(isset($_POST["email"])){
             $email = $user->existeEmail($_POST["email"]);
                 if($email == true){
-                    throw new Exception("email ja existente no banco");
+                    throw new Exception("Email ja existente no banco"."<br>");
             }
             $user->setVch_email($_POST["email"]);
         }
@@ -52,7 +52,7 @@ try {
     }
 }
 catch(Exception $e){
-    echo "processamento falhou". "<br>" . $e->getMessage();
+    echo "Falha no Processamento dos Dados". "<br>" . $e->getMessage();
 }
 
 

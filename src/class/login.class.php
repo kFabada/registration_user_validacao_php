@@ -70,20 +70,34 @@ class Login {
         }
       }
 
-      // public function buscaUsuario($login, $senha){
-      //   try{
-      //           $pdo = Database::conexao();
-      //           $query = $pdo->prepare("SELECT vch_login, vch_senha FROM usuario 
-      //           WHERE vch_login = :vch_login and vch_senha = :vch_senha");
-      //           $query->bindParam(':vch_login', $login);
-      //           $query->bindParam(':vch_senha', $senha);
-      //           $query->execute();
-      //           $result = $query->fetchColumn();
-      //           return $result;
-      //   }catch(Exception $e){
-      //     echo "falha na busca" . $e->getMessage();
-      //   }
-      // }
+
+      public function verificarLogin($login, $pass){
+        try{
+                $pdo = Database::conexao();
+                $query = $pdo->prepare("SELECT u.* FROM usuario AS u
+                WHERE vch_login = :vch_login  LIMIT 1" );
+                $query->bindParam(':vch_login', $login);
+                $query->execute();
+                $result = $query->fetch();
+
+                if($query->rowCount() > 0){
+                  $pass = $result['vch_senha'];
+                  $id_login = $result['id_login'];
+                
+                }
+
+                if($pass && $id_login){
+                  $_SESSION['user_session'] = $id_login;
+                  $_SESSION['id_login'] = $id_login;
+                  return true;
+                }
+                else{
+                  return false;
+                }
+        }catch(Exception $e){
+          echo "falha na busca" . $e->getMessage();
+        }
+      }
     
 }
 

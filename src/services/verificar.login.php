@@ -1,35 +1,34 @@
 <?php 
-    require_once('../config/database.php');
     include_once('../class/login.class.php');
 
-    $login = $_POST["login"];
-    $senha = $_POST["password"];
+    if (!isset($_SESSION)) {
+      session_start();
+  }
 
-      try{
-                $pdo = Database::conexao();
-                $query = $pdo->prepare("SELECT * FROM usuario 
-                WHERE vch_login = :vch_login and vch_senha = :vch_senha");
-                $query->bindParam(':vch_login', $login);
-                $query->bindParam(':vch_senha', $senha);
-                $query->execute();
-                $result = $query->fetch();
+    $login = new Login();
 
-        }catch(Exception $e){
-          echo "falha na busca" . $e->getMessage();
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+      $vch_login = $_POST["login"];
+      $vch_senha = $_POST["password"];
+
+      $user = $login->verificarLogin($vch_login, $vch_senha);
+
+      if($user){
+        if (isset($_SESSION["user_session"])) {
+          header('Location: src/Views/principal.php');
         }
-            
+        exit();
+      }
+      else{
+        echo "Não Existe cadastro com esses dados";
+      }
+      exit();
 
-    if(!empty($result)){
-        session_start();
-        $_SESSION['id'] = $result['id_login'];
-        $_SESSION['login'] = $result['vch_login'];
-        $_SESSION['password'] = $result['vch_senha'];           
-            header('location:principal.php');
+    }
 
+    
             
-       }else{
-        echo "Falha no login!";
-       }     
 
 
     
