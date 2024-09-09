@@ -33,7 +33,7 @@ class Login {
       }
     
       public function setVch_senha($vch_senha){
-        $this->vch_senha = password_hash($vch_senha, PASSWORD_DEFAULT);
+        $this->vch_senha = password_hash($vch_senha, PASSWORD_BCRYPT);
       }
     
       public function inserirLogin(){
@@ -49,6 +49,8 @@ class Login {
                   $this->id_login = $pdo->lastInsertId();
 
                   $pdo->commit();
+                  header('location: ../../public/index.php');
+
         }catch(Exception $e){
                   $pdo->rollBack();
                   echo "falha na insercao de login" . $e->getMessage();
@@ -71,24 +73,24 @@ class Login {
       }
 
 
-      public function verificarLogin($login, $pass){
+      public function verificarLogin($vch_login, $vch_senha){
         try{
                 $pdo = Database::conexao();
                 $query = $pdo->prepare("SELECT u.* FROM usuario AS u
                 WHERE vch_login = :vch_login  LIMIT 1" );
-                $query->bindParam(':vch_login', $login);
+                $query->bindParam(':vch_login', $vch_login);
                 $query->execute();
                 $result = $query->fetch();
 
                 if($query->rowCount() > 0){
-                  $pass = $result['vch_senha'];
+                  $hash = $result['vch_senha'];
                   $id_login = $result['id_login'];
-                
+                  $usuario = $result['vch_login'];
                 }
 
-                if($pass && $id_login){
+                if(password_verify($vch_senha, $hash)){
                   $_SESSION['user_session'] = $id_login;
-                  $_SESSION['id_login'] = $id_login;
+                  $_SESSION['user_name'] = $usuario;
                   return true;
                 }
                 else{

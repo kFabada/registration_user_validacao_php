@@ -1,5 +1,6 @@
 <?php 
     include_once('../class/login.class.php');
+    include_once('../Views/principal.php');
 
     if (!isset($_SESSION)) {
       session_start();
@@ -15,25 +16,15 @@
       $user = $login->verificarLogin($vch_login, $vch_senha);
 
       if($user){
-        if (isset($_SESSION["user_session"])) {
-          header('Location: src/Views/principal.php');
+        if (isset($_SESSION["user_session"]) && isset($_SESSION["user_name"]) ) {
+          header('location: ../Views/principal.php');
         }
-        exit();
+        else{
+          echo "Não Existe cadastro com esses dados";
+          exit();
+        }
       }
-      else{
-        echo "Não Existe cadastro com esses dados";
-      }
-      exit();
-
     }
 
     
-            
-
-
-    
-   
-
-
-
 ?>

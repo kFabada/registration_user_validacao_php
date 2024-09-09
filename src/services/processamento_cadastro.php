@@ -29,7 +29,7 @@ try {
         }
         
         if(isset($_POST["password"])){
-            $login->setVch_senha(password_hash($_POST['password'], PASSWORD_DEFAULT));
+            $login->setVch_senha($_POST['password']);
         }
 
         if(isset($_POST["email"])){
